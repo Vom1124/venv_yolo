@@ -37,6 +37,7 @@ Alternatively, you can run
 
         python3 check_yolo.py
 
+<!---
 ### ---- Installing  OpenNI for getting stream from depth sensor 
 
 #### 1. Install dependencies
@@ -54,3 +55,4 @@ Alternatively, you can run
 
 #### 4. Build OpenNI2
         make
+-->
