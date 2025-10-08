@@ -40,7 +40,7 @@ Alternatively, you can run
 ### ---- Installing  OpenNI for getting stream from depth sensor 
 
 # 1. Install dependencies
-        sudo apt update
+        sudo apt update && \
         sudo apt install git build-essential python3-pip \
             libusb-1.0-0-dev libudev-dev openjdk-8-jdk freeglut3-dev \
             doxygen graphviz
