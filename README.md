@@ -32,3 +32,7 @@ Ultralytics_YOLO Virtual Environment to run in parallel with ROS~2
 
       python3 -c 'import ultralytics; from ultralytics import YOLO; print("✅ YOLO ready")'
       python3 -c "import numpy; print('🔢 NumPy version:', numpy.__version__)"
+      
+Alternatively, you can run
+
+        python3 check_yolo.py
