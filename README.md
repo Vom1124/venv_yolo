@@ -37,6 +37,8 @@ Alternatively, you can run
 
         python3 check_yolo.py
 
+Now, everytime a YOLO library is used within ROS2 node, that terminal needs to be separately sources and can not be sources globally with ROS 2 workpace, as ROS 2 and Ultralytics don't share the same version of many odules like OpenCV, Python, etc.
+
 <!---
 ### ---- Installing  OpenNI for getting stream from depth sensor 
 
