@@ -19,6 +19,8 @@ Ultralytics_YOLO Virtual Environment to run in parallel with ROS~2
 
       pip install --upgrade pip
 
+### NumPy should be kept below version 2.0; otherwise, ROS 2 or Ultralytics may encounter conflicts with globally installed dependencies.
+
 ### --- Install PyTorch CPU-only for ARM (this is for Raspberry 4+ models only, check the code for CUDA and other GPUs before installing)
 
       pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
