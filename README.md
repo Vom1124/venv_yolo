@@ -93,7 +93,7 @@ USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
 pip install ultralytics
 </code></pre>
   
-# Ensure NumPy is < 2 to avoid conflicts
+<h3> Ensure NumPy is < 2 to avoid conflicts  </h3>
 <pre><code class="bash">
 pip install "numpy<2"
 </code></pre>
