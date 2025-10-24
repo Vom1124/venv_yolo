@@ -63,10 +63,6 @@ pip install --upgrade pip
 # Install PyTorch CPU-only
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 
----
-  
----
-
 <h3>B. Virtual Machine without AVX</h3>
 <p>Use this if you are on a VM (e.g., VirtualBox) or CPU without AVX support. Note: Training may be slower.</p>
 
