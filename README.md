@@ -52,6 +52,8 @@ pip install --upgrade pip
 
 ---
 
+---
+
 <h2>Installation Options</h2>
 
 <h3>A. Host Computer / Microcontroller</h3>
@@ -87,7 +89,6 @@ pip install -r requirements.txt
 # Build PyTorch without AVX
 USE_CUDA=0 USE_MKLDNN=0 USE_FBGEMM=0 USE_AVX=0 USE_AVX2=0 USE_AVX512=0 \
 USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
-
 ---
   
 #--------------------------------------
