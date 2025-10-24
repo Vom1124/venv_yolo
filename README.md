@@ -50,7 +50,6 @@ venv_yolo\Scripts\activate
 pip install --upgrade pip
 </code></pre>
 
----
 
 <h2>Installation Options</h2>
 ---
@@ -103,10 +102,10 @@ pip install "numpy<2"
 <h2>Verify Installation</h2>
 ---
 <pre><code class="bash">
-# Test YOLO
+#Test YOLO
 python3 -c 'import ultralytics; from ultralytics import YOLO; print("✅ YOLO ready")'
-
-# Test NumPy  
+  
+#Test NumPy  
 python3 -c "import numpy; print('🔢 NumPy version:', numpy.__version__)"
 </code></pre>
 
