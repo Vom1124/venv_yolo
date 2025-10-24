@@ -61,8 +61,7 @@ pip install --upgrade pip
 # Install PyTorch CPU-only
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 </code></pre>
----
----
+
 <h3>B. Virtual Machine without AVX</h3>
 <p>Use this if you are on a VM (e.g., VirtualBox) or CPU without AVX support. Note: Training may be slower.</p>
 
@@ -87,32 +86,27 @@ USE_CUDA=0 USE_MKLDNN=0 USE_FBGEMM=0 USE_AVX=0 USE_AVX2=0 USE_AVX512=0 \
 USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
 
 </code></pre>
----
+
 
   
-#--------------------------------------
 <h2> Install Ultralytics YOLO </h2>
 <pre><code class="bash">
 pip install ultralytics
 </code></pre>
-#-----------------------------
   
-# -----------------------------
 # Ensure NumPy is < 2 to avoid conflicts
 <pre><code class="bash">
 pip install "numpy<2"
-# -----------------------------
 </code></pre>
 
----
 
 <h2>Verify Installation</h2>
-
+---
 <pre><code class="bash">
 # Test YOLO
 python3 -c 'import ultralytics; from ultralytics import YOLO; print("✅ YOLO ready")'
 
-# Test NumPy
+# Test NumPy  
 python3 -c "import numpy; print('🔢 NumPy version:', numpy.__version__)"
 </code></pre>
 
@@ -121,10 +115,9 @@ python3 -c "import numpy; print('🔢 NumPy version:', numpy.__version__)"
 python3 check_yolo.py
 </code></pre>
 
+
+<h2>Example using YOLO with ROS 2</h2>
 ---
-
-<h2>Using YOLO with ROS 2</h2>
-
 <p>Always activate <code>venv_yolo</code> in a separate terminal. Do NOT source ROS 2 globally in the same terminal.</p>
 
 <pre><code class="bash">
@@ -137,7 +130,6 @@ source ~/venv_yolo/bin/activate
 python3 train_yolo_model.py
 </code></pre>
 
----
 
 <!---
 <h2>Optional: Installing OpenNI for Depth Sensor Streaming</h2>
