@@ -53,14 +53,16 @@ pip install --upgrade pip
 ---
 
 <h2>Installation Options</h2>
-
+---
 <h3>A. Host Computer / Microcontroller</h3>
 <p>Use this if you are on Linux, Windows, or an ARM device like Raspberry Pi 4+. Follow these steps:</p>
 
 <pre><code class="bash">
 # Install PyTorch CPU-only
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-
+</code></pre>
+---
+---
 <h3>B. Virtual Machine without AVX</h3>
 <p>Use this if you are on a VM (e.g., VirtualBox) or CPU without AVX support. Note: Training may be slower.</p>
 
@@ -84,14 +86,20 @@ pip install -r requirements.txt
 USE_CUDA=0 USE_MKLDNN=0 USE_FBGEMM=0 USE_AVX=0 USE_AVX2=0 USE_AVX512=0 \
 USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
 
+</code></pre>
+---
+
   
 #--------------------------------------
 <h2> Install Ultralytics YOLO </h2>
+<pre><code class="bash">
 pip install ultralytics
+</code></pre>
 #-----------------------------
   
 # -----------------------------
 # Ensure NumPy is < 2 to avoid conflicts
+<pre><code class="bash">
 pip install "numpy<2"
 # -----------------------------
 </code></pre>
