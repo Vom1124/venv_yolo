@@ -1,91 +1,137 @@
-# venv_yolo
-Ultralytics_YOLO Virtual Environment to run in parallel with ROS~2
+# <b>venv_yolo</b>
+<i>Ultralytics YOLO Virtual Environment to run in parallel with ROS 2</i>
 
-##  Preliminary Setup
+<p>This README provides a complete guide to creating a dedicated Python virtual environment (<code>venv_yolo</code>) for training and using <b>Ultralytics YOLO</b> alongside your ROS 2 workspace. Covers host computers/microcontrollers and virtual machines without AVX.</p>
 
-### -- Install Python Virtual Environment (using the correct python 3 version installed in your system)
+---
 
-        sudo apt update && sudo apt install python3.10-venv
-        
-### ---- Create a virtual environment parent directory to install the Ultralytics (preferrably outisde the ros2_ws to avoid any package conflcits)
+<h2>Preliminary Setup</h2>
 
-    python3 -m venv ~/venv_yolo
+<h3>1. Install Python Virtual Environment</h3>
+<pre><code class="bash">
+sudo apt update && sudo apt install python3.10-venv
+</code></pre>
 
-### --- Now, source the venv using
+<h3>2. Create Virtual Environment</h3>
+<pre><code class="bash">
+python3 -m venv ~/venv_yolo
+</code></pre>
 
-    source ~/venv_yolo/bin/activate
+<h3>3. Activate the Virtual Environment</h3>
+<pre><code class="bash">
+source ~/venv_yolo/bin/activate
+# Windows:
+# Command Prompt: venv_yolo\Scripts\activate
+# PowerShell: .\venv_yolo\Scripts\Activate.ps1
+# May require: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+</code></pre>
 
-### --- Update the pip
+<h3>4. Upgrade pip and Install Compatible NumPy</h3>
+<pre><code class="bash">
+pip install --upgrade pip
+pip install "numpy<2"
+</code></pre>
 
-      pip install --upgrade pip
+---
 
-#### *** NumPy should be kept below version 2.0; otherwise, ROS 2 or Ultralytics may encounter conflicts with globally installed dependencies. 
-This can simply be done by reinstalling older version of numpy as
+<h2>Host Computer / Microcontroller Installation</h2>
 
-                pip install "numpy<2"
-***
+<h3>1. Install PyTorch CPU-only</h3>
+<pre><code class="bash">
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+</code></pre>
 
-### ons are define: [1] Host computer; and [2] Virtual Machine Ubuntu
+<h3>2. Install Ultralytics YOLO</h3>
+<pre><code class="bash">
+pip install ultralytics
+</code></pre>
 
-## [1] Installing in the host computer/microcontroller
-[.] ### --- Install PyTorch CPU-only for ARM (this is for Raspberry 4+ models only, check the code for CUDA and other GPUs before installing)
+---
 
-      pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+<h2>Virtual Machine Installation Without AVX</h2>
+<p><b>Note:</b> AVX instructions may be missing. Build PyTorch from source to avoid illegal instruction crashes. Training may be slower.</p>
 
-[.] ### ---- Install Ultralytics with all dependencies
+<h3>1. Install Build Dependencies</h3>
+<pre><code class="bash">
+sudo apt update
+sudo apt install -y git python3-dev python3-pip cmake ninja-build libopenblas-dev
+</code></pre>
 
-      pip install ultralytics
+<h3>2. Clone PyTorch Repository</h3>
+<pre><code class="bash">
+git clone --branch v2.2.2 https://github.com/pytorch/pytorch.git
+cd pytorch
+git submodule sync
+git submodule update --init --recursive
+pip install -r requirements.txt
+</code></pre>
 
-## [2] Installing on a VM without AVX instructions
-[.] ### Installing PyTorch from source instead of .whl file.
-<b> Note:</b> Without AVX might be a slower training process; make sure enough resources is allocated for the VM. Porceed with caution!
+<h3>3. Build PyTorch Without AVX</h3>
+<pre><code class="bash">
+USE_CUDA=0 USE_MKLDNN=0 USE_FBGEMM=0 USE_AVX=0 USE_AVX2=0 USE_AVX512=0 \
+USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
+</code></pre>
 
-        sudo apt update
-        sudo apt install -y git python3-dev python3-pip cmake ninja-build libopenblas-dev
-        
-        git clone --branch v2.2.2 https://github.com/pytorch/pytorch.git
-        cd pytorch
-        git submodule sync
-        git submodule update --init --recursive
-        
-        pip install -r requirements.txt
-        
-        USE_CUDA=0 USE_MKLDNN=0 USE_FBGEMM=0 USE_AVX=0 USE_AVX2=0 USE_AVX512=0 \
-        USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
+---
 
+<h2>Verify Installation</h2>
 
-### ---- Verify installation
+<pre><code class="bash">
+python3 -c 'import ultralytics; from ultralytics import YOLO; print("✅ YOLO ready")'
+python3 -c "import numpy; print('🔢 NumPy version:', numpy.__version__)"
+</code></pre>
 
-      python3 -c 'import ultralytics; from ultralytics import YOLO; print("✅ YOLO ready")'
-      python3 -c "import numpy; print('🔢 NumPy version:', numpy.__version__)"
-      
-Alternatively, you can run
+<p>Optional: create <code>check_yolo.py</code>:</p>
+<pre><code class="python">
+from ultralytics import YOLO
+import numpy as np
 
-        python3 check_yolo.py
+print("✅ YOLO ready")
+print("🔢 NumPy version:", np.__version__)
+</code></pre>
 
-Now, everytime a YOLO library is used within ROS2 node, that terminal needs to be separately sources and can not be sources globally with ROS 2 workpace, as ROS 2 and Ultralytics don't share the same version of many odules like OpenCV, Python, etc.
+<pre><code class="bash">
+python3 check_yolo.py
+</code></pre>
 
-### Training a YOLO model within the VM Ubuntu without AVX
+---
 
+<h2>Using YOLO with ROS 2</h2>
+<p>Always activate <code>venv_yolo</code> in a separate terminal. Do not source ROS 2 globally in the same terminal.</p>
 
+<pre><code class="bash">
+# Terminal 1 – ROS 2 workspace
+source /opt/ros/humble/setup.bash
+colcon build
 
+# Terminal 2 – YOLO environment
+source ~/venv_yolo/bin/activate
+python3 train_yolo_model.py
+</code></pre>
 
-<!---
-### ---- Installing  OpenNI for getting stream from depth sensor 
+---
 
-#### 1. Install dependencies
-        sudo apt update && \
-        sudo apt install git build-essential python3-pip \
-            libusb-1.0-0-dev libudev-dev openjdk-8-jdk freeglut3-dev \
-            doxygen graphviz
+<h2>Optional: Installing OpenNI for Depth Sensor Streaming</h2>
+<pre><code class="bash">
+sudo apt update && \
+sudo apt install git build-essential python3-pip \
+libusb-1.0-0-dev libudev-dev openjdk-8-jdk freeglut3-dev \
+doxygen graphviz
 
-#### 2. Clone the OpenNI2 repository
-        git clone https://github.com/structureio/OpenNI2.git
-        cd OpenNI2
+git clone https://github.com/structureio/OpenNI2.git
+cd OpenNI2
+git checkout master
+make
+</code></pre>
 
-#### 3. Checkout the master branch
-        git checkout master
+---
 
-#### 4. Build OpenNI2
-        make
--->
+<h2>Summary</h2>
+
+<table>
+<tr><th>Environment</th><th>PyTorch Install</th><th>AVX Support</th><th>Recommended For</th></tr>
+<tr><td>Host / Microcontroller</td><td>pip install torch torchvision torchaudio</td><td>✅ Yes</td><td>Linux, Windows, Raspberry Pi</td></tr>
+<tr><td>Virtual Machine</td><td>Build from source</td><td>❌ No</td><td>VirtualBox or CPUs without AVX</td></tr>
+</table>
+
+<p>End of venv_yolo setup.</p>
