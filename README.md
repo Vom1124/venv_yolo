@@ -95,7 +95,7 @@ USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
 ##### Verify the pytorch version and check for CPU status for AVX free
 <pre><code class="bash">
 python -c "import torch; print(torch.__version__); print(torch.__config__.show())"
-OR
+#OR
 grep -a AVX $(python -c "import torch; print(torch.__file__)") || echo "No AVX detected"
 
 </code></pre>
