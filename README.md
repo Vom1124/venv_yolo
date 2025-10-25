@@ -111,7 +111,7 @@ MAX_JOBS=$(nproc) python setup.py install
 <pre><code class="bash">
 python -c "import torch; print(torch.__version__); print(torch.__config__.show())"\</code></pre>
 </code></pre>
-# Make sure the output ops do not give a runtime error.
+##### Make sure the output ops do not give a runtime error.
 <pre><code class="bash">
 python -c "import torchvision; print(list(torchvision.ops.__dict__.keys()))"
 </code></pre>
