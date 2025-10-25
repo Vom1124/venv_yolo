@@ -94,10 +94,11 @@ USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
 
 ##### Verify the pytorch version and check for CPU status for AVX free
 <pre><code class="bash">
-python -c "import torch; print(torch.__version__); print(torch.__config__.show())"
+python -c "import torch; print(torch.__version__); print(torch.__config__.show())"\</code></pre>
+</code></pre>
 #OR
+<pre><code class="bash">
 grep -a AVX $(python -c "import torch; print(torch.__file__)") || echo "No AVX detected"
-
 </code></pre>
 
 
@@ -110,7 +111,6 @@ pip install ultralytics --no-deps
 <h3>Now, add necessary packages as needed. For example, OpenCV, Matplotlib, etc.</h3>
 <pre><code class="bash">
 pip install opencv-python tqdm matplotlib
-
 </code></pre>
   
 <h3> Ensure NumPy is < 2 to avoid conflicts  </h3>
