@@ -137,10 +137,10 @@ pip install "numpy<2"
 <h2>Verify Installation</h2>
 <pre><code class="bash">
 #Test YOLO
-python3 -c 'import ultralytics; from ultralytics import YOLO; print("✅ YOLO ready")'
+python -c 'import ultralytics; from ultralytics import YOLO; print("✅ YOLO ready")'
 <br>
 #Test NumPy  
-python3 -c "import numpy; print('🔢 NumPy version:', numpy.__version__)"
+python -c "import numpy; print('🔢 NumPy version:', numpy.__version__)"
 </code></pre>
 
 <p>Optional <code>check_yolo.py</code>:</p>
@@ -160,10 +160,11 @@ colcon build
 
 # Terminal 2 – YOLO environment
 source ~/venv_yolo/bin/activate
-python3 train_yolo_model.py
+python train_yolo_model.py
 </code></pre>
 
-
+<b>Note:</b> Check for python mismatches when executing; for instance, python vs python when running inside the ROS 2 workspace which is outside the sourced venv.
+  
 <!---
 <h2>Optional: Installing OpenNI for Depth Sensor Streaming</h2>
 
