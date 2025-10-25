@@ -90,6 +90,21 @@ pip install -r requirements.txt
 USE_CUDA=0 USE_MKLDNN=0 USE_FBGEMM=0 USE_AVX=0 USE_AVX2=0 USE_AVX512=0 \
 USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
 
+# === TORCHVISION BUILD (v0.17.2) ===
+cd ~
+git clone --branch v0.17.2 https://github.com/pytorch/vision.git
+cd vision
+
+# --- ENV FLAGS: Ensure no CUDA or vectorization ---
+export USE_CUDA=0
+export BUILD_TEST=0
+export TORCH_CUDA_ARCH_LIST=""
+export CFLAGS="-mno-avx -mno-avx2 -mno-fma -mno-sse4.2"
+export CXXFLAGS="$CFLAGS"
+
+# Build & install TorchVision
+MAX_JOBS=$(nproc) python setup.py install
+
 </code></pre>
 
 ##### Verify the pytorch version and check for CPU status for AVX free
