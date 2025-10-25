@@ -89,7 +89,10 @@ pip install -r requirements.txt
 # Build PyTorch without AVX
 USE_CUDA=0 USE_MKLDNN=0 USE_FBGEMM=0 USE_AVX=0 USE_AVX2=0 USE_AVX512=0 \
 USE_VSX=0 USE_MPS=0 BUILD_TEST=0 python setup.py install
-  
+
+</code></pre>
+
+<pre><code class="bash">
 # Verify the pytorch version and check for CPU status for AVX free
 python -c "import torch; print(torch.__version__); print(torch.__config__.show())"
 OR
