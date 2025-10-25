@@ -102,9 +102,15 @@ grep -a AVX $(python -c "import torch; print(torch.__file__)") || echo "No AVX d
 
 
   
-<h2> Install Ultralytics YOLO </h2>
+<h2> Install Ultralytics YOLO without any dependencies to avoid ultralytics to automatically install the recent pytorch</h2>
 <pre><code class="bash">
-pip install ultralytics
+pip install ultralytics --no-deps
+</code></pre>
+
+<h3>Now, add necessary packages as needed. For example, OpenCV, Matplotlib, etc.</h3>
+<pre><code class="bash">
+pip install numpy opencv-python tqdm matplotlib
+
 </code></pre>
   
 <h3> Ensure NumPy is < 2 to avoid conflicts  </h3>
