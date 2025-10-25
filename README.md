@@ -109,7 +109,7 @@ MAX_JOBS=$(nproc) python setup.py install
 
 ##### Verify the pytorch and torchvision version, and check for CPU status for AVX free
 <pre><code class="bash">
-python -c "import torch; print(torch.__version__); print(torch.__config__.show())"\</code></pre>
+python -c "import torch; print(torch.__version__); print(torch.__config__.show())"
 </code></pre>
 ##### Make sure the output ops do not give a runtime error.
 <pre><code class="bash">
