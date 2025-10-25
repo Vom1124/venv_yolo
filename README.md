@@ -123,7 +123,7 @@ python -c "import torchvision; print(list(torchvision.ops.__dict__.keys()))"
 pip install ultralytics --no-deps
 </code></pre>
 
-<h3>Now, add necessary packages as needed. For example, OpenCV, Matplotlib, etc.</h3>
+<h5>Now, add necessary packages as needed. For example, OpenCV, Matplotlib, etc.</h3>
 <pre><code class="bash">
 pip install opencv-python tqdm matplotlib
 </code></pre>
