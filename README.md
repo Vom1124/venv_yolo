@@ -54,7 +54,7 @@ pip install --upgrade pip
 
 <h2>Installation Options</h2>
 ---
-<h3>A. Host Computer / Microcontroller</h3>
+<h3>A. Host Computer / Microcontroller: May work for most VM (<b>Recommended</b>)</h3>
 <p>Use this if you are on Linux, Windows, or an ARM device like Raspberry Pi 4+. Follow these steps:</p>
 
 <pre><code class="bash">
@@ -62,7 +62,7 @@ pip install --upgrade pip
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 </code></pre>
 
-<h3>B. Virtual Machine without AVX</h3>
+<h3>B. Virtual Machine without AVX: If the CPU uses old architecture (<b>Optional</b>)</h3>
 <p>Use this if you are on a VM (e.g., VirtualBox) or CPU without AVX support. Note: Training may be slower.</p>
 <p><u><b>Warning:</u> This is not a verified method!!!  It depends on the Virtual Machine software. Proceed at yourown risk.</b> This installation might be much longer than installing direclty with .whl file&mdash;around 5-6 hours to build from source, so allocate enough resources for the VM to begin with. Also, make sure to uninstall
   or remove pre-exisitng pytorch within the venv</p>
