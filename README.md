@@ -109,7 +109,7 @@ pip install ultralytics --no-deps
 
 <h3>Now, add necessary packages as needed. For example, OpenCV, Matplotlib, etc.</h3>
 <pre><code class="bash">
-pip install numpy opencv-python tqdm matplotlib
+pip install opencv-python tqdm matplotlib
 
 </code></pre>
   
