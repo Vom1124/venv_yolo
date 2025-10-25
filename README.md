@@ -64,8 +64,11 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 <h3>B. Virtual Machine without AVX</h3>
 <p>Use this if you are on a VM (e.g., VirtualBox) or CPU without AVX support. Note: Training may be slower.</p>
-<p><u>Warning:</u> This installation might much longer than installing direclty with .whl file. Also, make sure to uninstall\
+<p><u>Warning:</u> This installation might much longer than installing direclty with .whl file. Also, make sure to uninstall
   or remove pre-exisitng pytorch within the venv</p>
+<pre><code class="bash">
+pip uninstall torch torchvision && pip cache purge
+</code></pre>
 
 <pre><code class="bash">
 # Install build dependencies
